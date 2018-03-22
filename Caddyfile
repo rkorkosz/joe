@@ -1,0 +1,9 @@
+192.168.0.102:8080
+gzip
+proxy /joe https://joemonster.org {
+    header_downstream Access-Control-Allow-Origin *
+    without /joe
+    transparent
+}
+
+log stdout
