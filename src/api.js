@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import axios from 'axios';
 
 class Api {
@@ -12,6 +12,10 @@ class Api {
     @observable isFetching = false;
     @observable items = [];
     @observable current = {};
+    @computed get nextId() {
+        if(!this.current) return -1
+        return this.items[this.items.findIndex(item => item.id === this.current.id)+1]['id']
+    }
     @action fetch() {
         if (!this.shouldFetch()) return
         this.isFetching = true
@@ -31,10 +35,11 @@ class Api {
     }
     @action fetchItem(id) {
         if(this.items.length > 0) {
-            this.current = this.items.find(item => item.id === parseInt(id, 10))
+            id = parseInt(id, 10);
+            this.current = this.items.find(item => item.id === id)
             return
         }
-        axios.get(`${this.api_url}${this.object}/${id}`)
+        axios.get(`${this.api_url}${this.object}s/${id}`)
             .then(this.setCurrent)
             .catch(console.error)
     }

@@ -6,11 +6,13 @@ import "normalize.css";
 import Api from 'api';
 import Main from 'components/Main';
 
-const articleStore = new Api('article');
-const pictureStore = new Api('picture');
+const store = {
+    articleStore: new Api('article'),
+    pictureStore: new Api('picture')
+}
 
 ReactDOM.render(
-    <Provider articleStore={articleStore} pictureStore={pictureStore}>
+    <Provider {...store}>
         <Main />
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

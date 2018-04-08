@@ -8,7 +8,7 @@ import Menu from 'components/Menu';
 
 const Main = (props) => {
     const links = [
-        {path: '/', title: 'Home'},
+        {path: '/articles', title: 'Home'},
         {path: '/pictures', title: 'Pictures'},
         {path: '/videos', title: 'Videos'},
     ]
@@ -18,10 +18,10 @@ const Main = (props) => {
             <div>
                 <Menu links={links} />
                 <Switch>
-                    <Route exact path="/" component={Articles}/>
+                    <Route exact path="/articles" component={Articles}/>
                     <Route path="/articles/:id" component={Article}/>
                     <Route path="/pictures/:id" component={Picture}/>
-                    <Route path="/pictures" component={Pictures}/>
+                    <Route exact path="/pictures" component={Pictures}/>
                 </Switch>
             </div>
         </Router>

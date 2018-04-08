@@ -19,8 +19,8 @@ class Pictures extends React.Component {
             <div>
                 <Grid>
                     {pictures.map(pic => (
-                        <Link to={`/pictures/${pic.id}`}>
-                            <img key={pic.id} alt={pic.title} src={pic.big_thumb_url} />
+                        <Link to={`/pictures/${pic.id}`} key={pic.id}>
+                            <img alt={pic.title} src={pic.big_thumb_url} />
                         </Link>
                     ))}
                 </Grid>
